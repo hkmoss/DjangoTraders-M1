@@ -1,0 +1,62 @@
+<!--
+    Home page for the djtraders app. No data of its own; just links
+    deeper into the app. Extends common/base.html for the shared
+    head/navbars/page skeleton.
+
+  1. Customers/Products cards use dt-icon (steel) and dt-icon-supplier
+    (sage) respectively, so the color itself signals which section a
+    link leads to. Each card's <a> is bare, wrapped in a dt-link-wrap
+    div per base.html's link-styling convention.
+-->
+{% extends "common/base.html" %}
+
+{% block title %}DJ Traders{% endblock %}
+
+{% block content %}
+    <h1>Welcome to DJ Traders</h1>
+
+    <div>
+        This is the djTraders app, one piece of the larger
+        DjangoTraders project. It's where the trading data itself
+        lives -- starting with the customer and product records
+        below.
+    </div>
+
+    <div>
+        Use the cards below to browse the current lists of customers
+        and products as the app grows more features over the course of
+        the semester.
+    </div>
+
+    {# url looks up a route by name instead of hardcoding the path; the #}
+    {# "djtraders:" prefix is this app's namespace (app_name in urls.py). #}
+    <div class="row m-3 g-3 justify-content-center">
+        <div class="col-md-3">
+            <div class="card h-100 w3-hover-shadow">
+                <div class="dt-link-wrap card-body text-center">
+                    <a href="{% url 'djtraders:customer_list' %}" class="text-decoration-none">
+                        <i class="fa-solid fa-users fa-2x dt-icon mb-2"></i>
+                        <h5 class="card-title">Customers</h5>
+                        <div class="card-text">
+                            Browse the full list of customers on record.
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card h-100 w3-hover-shadow">
+                <div class="dt-link-wrap card-body text-center">
+                    <a href="{% url 'djtraders:product_list' %}"  class="text-decoration-none">
+                        <i class="fa-solid fa-box-open fa-2x dt-icon-supplier mb-2"></i>
+                        <h5 class="card-title">Products</h5>
+                        <div class="card-text text-muted">
+                            To be added
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

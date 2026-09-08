@@ -1,0 +1,25 @@
+<!--
+    Project-level home page. Lives at the top-level templates/ folder
+    since it belongs to the project as a whole, not to djtraders
+    specifically. Extends common/base.html for the shared skeleton;
+    only the title and content blocks are filled in below.
+
+  1. A centered welcome heading plus the project's large SVG logo, both
+    wrapped in one link to djtraders:home -- the navbars already cover
+    navigation, so this page's content only needs one big way in.
+-->
+{% extends "common/base.html" %}
+{% load static %}
+
+{% block title %}DjangoTraders{% endblock %}
+
+{% block content %}
+    <div class="text-center py-5">
+        <h1 class="display-4 mb-4">Welcome to DjangoTraders</h1>
+        <div class="dt-link-wrap d-inline-block w3-hover-shadow">
+            <a href="{% url 'djtraders:home' %}">
+                <img src="{% static 'common/images/logo-large.svg' %}" alt="Go to the djTraders app">
+            </a>
+        </div>
+    </div>
+{% endblock %}
