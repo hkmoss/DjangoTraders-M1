@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render
 
-from .models import Category, Customer, Order, Product
+from .models import Category, Customer, Order, Product, Supplier
 
 """
 View functions for the djtraders app.
@@ -102,24 +102,30 @@ def product_list(request):
     """
     search_product_name = request.GET.get("product_name", "")
     search_category_id = request.GET.get("category", "")
+    search_supplier_id = request.GET.get("supplier", "")
     show_all = request.GET.get("show_all") == "on"
 
     products = Product.search(
         product_name=search_product_name,
         category_id=search_category_id,
+        supplier_id=search_supplier_id,
         show_all=show_all,
     )
 
     # Every category on record, for the search dropdown.
+
     categories = Category.objects.order_by("category_name")
+    suppliers = Supplier.objects.order_by("company_name")
 
     context = {
-        "products": products,
-        "categories": categories,
-        "search_product_name": search_product_name,
-        "search_category_id": search_category_id,
-        "show_all": show_all,
-    }
+         "products": products,
+         "categories": categories,
+         "suppliers": suppliers,
+         "search_product_name": search_product_name,
+         "search_category_id": search_category_id,
+         "search_supplier_id": search_supplier_id,
+         "show_all": show_all,
+}
     return render(request, "djtraders/product_list.html", context)
 
 

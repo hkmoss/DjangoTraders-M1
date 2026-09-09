@@ -266,7 +266,7 @@ class Product(models.Model):
         return bool(self.discontinued)
 
     @classmethod
-    def search(cls, product_name="", category_id="", show_all=False):
+    def search(cls, product_name="", category_id="", supplier_id="", show_all=False):
         """
         Filters products by an optional product name and/or category,
         returning every non-discontinued product by default. Used by
@@ -290,6 +290,9 @@ class Product(models.Model):
         if category_id:
             queryset = queryset.filter(category_id=category_id)
 
+        if supplier_id:
+            queryset = queryset.filter(supplier_id=supplier_id)
+        
         # if show_all is False, filter out discontinued products (discontinued=1);
         if not show_all:
             queryset = queryset.filter(discontinued=0)

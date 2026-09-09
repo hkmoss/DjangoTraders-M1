@@ -56,6 +56,18 @@
                                 {% if category.category_id|stringformat:"s" == search_category_id %}selected{% endif %}>{{ category.category_name }}</option>
                     {% endfor %}
                 </select>
+
+                <select name="supplier" class="form-select" onchange="this.form.submit()">
+                    <option value="">Select Supplier</option>
+                    {% for supplier in suppliers%}
+                        <option value="{{ supplier.supplier_id }}"
+                            {% if supplier.supplier_id|stringformat:"s" == search_supplier_id %}selected{% endif %}>{{ supplier.company_name }}</option>
+                    {% endfor %}
+                </select>
+
+
+
+
                 <div class="form-check text-nowrap">
                     <input type="checkbox"
                            name="show_all"
@@ -90,6 +102,7 @@
         <thead class="table-secondary">
             <tr>
                 <th class="py-2">Product Name</th>
+                <th class="py-2">Supplier</th>
                 <th class="py-2">Unit Price</th>
                 <th class="py-2">Units In Stock</th>
                 <th class="py-2 text-center">Discontinued</th>
@@ -102,6 +115,7 @@
             {% for product in products %}
                 <tr>
                     <td>{{ product.product_name }}</td>
+                    <td>{{ product.supplier.company_name }}</td>    
                     <td>{% if product.unit_price is not None %}${{ product.unit_price|floatformat:2|intcomma }}{% else %}—{% endif %}</td>
                     <td>{{ product.units_in_stock }}</td>
                     <td class="text-center">{{ product.is_discontinued|yesno:"Yes,No" }}</td>
