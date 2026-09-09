@@ -97,12 +97,15 @@
         </div>
     </div>
 
+{% if products %}
+
     <table class="table table-striped table-bordered table-hover align-middle"
            id="product-table">
         <thead class="table-secondary">
             <tr>
                 <th class="py-2">Product Name</th>
                 <th class="py-2">Supplier</th>
+                <th class="py-2">Category</th> 
                 <th class="py-2">Unit Price</th>
                 <th class="py-2">Units In Stock</th>
                 <th class="py-2 text-center">Discontinued</th>
@@ -116,17 +119,28 @@
                 <tr>
                     <td>{{ product.product_name }}</td>
                     <td>{{ product.supplier.company_name }}</td>    
+                    <td>{{ product.category.category_name }}</td>
                     <td>{% if product.unit_price is not None %}${{ product.unit_price|floatformat:2|intcomma }}{% else %}—{% endif %}</td>
-                    <td>{{ product.units_in_stock }}</td>
+                    <td>{{ product.units_in_stock }}{% if product.units_in_stock < 10 %}
+                        <span class="badge bg-warning text-dark"><i class="fa-solid fa-triangle-exclamation"></i>Low Stock</span>{% endif %}</td>      
                     <td class="text-center">{{ product.is_discontinued|yesno:"Yes,No" }}</td>
                     <td class="text-center">
                         {# Not linked yet -- view-product destination is still to be decided. #}
                         <i class="fa-solid fa-eye dt-icon-supplier"></i>
                     </td>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            
+           {% endfor %}
+</tbody>
+</table>
+
+    {% else %}
+
+        <div class="alert alert-warning">
+             <i class="fa-solid fa-circle-exclamation"></i>
+            No products matched your search criteria
+        </div>
+    {% endif %}
 {% endblock %}
 
 {% block scripts %}
