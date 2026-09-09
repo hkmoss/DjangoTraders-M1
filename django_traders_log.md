@@ -41,3 +41,35 @@ Added a new City search input field to the existing search form.
        class="form-control"
        placeholder="City"
        value="{{ search_city }}">
+
+       9/8/2026
+
+Completed Contact Title search functionality on the Customer List page.
+
+Changes made:
+
+- Added contact_titles queryset to customer_list view in views.py.
+- Added search_contact_title = request.GET.get("contact_title", "").
+- Added contact_titles and search_contact_title to the context dictionary.
+- Updated Customer.search() in models.py to accept a contact_title parameter.
+- Added contact_title filtering to the Customer.search() method.
+- Added a Contact Title dropdown to customer_list.html using the Country dropdown as a template.
+- Verified dropdown values populate correctly from the database.
+- Verified selecting a Contact Title filters the customer list correctly.
+- Added a Contact Title column to the Customer List table.
+- Added customer.contact_title to the table row display.
+- Tested and verified all search functionality is working.
+
+Additional accomplishments:
+
+- Installed Git.
+- Configured Git username and email.
+- Initialized DjangoTraders as a local Git repository.
+- Created and configured a .gitignore file.
+- Created initial Git commit.
+- Created GitHub repository: DjangoTraders-M1.
+- Connected local repository to GitHub.
+- Successfully pushed project to GitHub and established origin/main tracking.
+
+Result:
+Customer List page now supports searching by Contact Title and displays Contact Title in the customer table. Project is now under Git version control and backed up to GitHub.
