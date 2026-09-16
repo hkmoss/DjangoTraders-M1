@@ -117,7 +117,7 @@
             {# Loops over the "products" queryset from the view's context. #}
             {% for product in products %}
                 <tr>
-                    <td>{{ product.product_name }}</td>
+                    <td><a href="{% url 'djtraders:product_detail' product.product_id %}">{{ product.product_name }}</a></td>
                     <td>{{ product.supplier.company_name }}</td>    
                     <td>{{ product.category.category_name }}</td>
                     <td>{% if product.unit_price is not None %}${{ product.unit_price|floatformat:2|intcomma }}{% else %}—{% endif %}</td>

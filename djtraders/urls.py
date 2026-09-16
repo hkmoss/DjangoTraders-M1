@@ -39,6 +39,18 @@ customer_list_url = path("customers/", views.customer_list, name="customer_list"
 # GET /djtraders/products/ -> views.product_list
 product_list_url = path("products/", views.product_list, name="product_list")
 
+
+# GET /djtraders/products/<product_id>/ -> views.product_detail
+product_detail_url = path(
+    "products/<int:product_id>/", views.product_detail, name="product_detail"
+)
+
+
+
+
+
+
+
 # "<str:customer_id>" is a path converter: matches a non-slash segment
 # and passes it to the view as customer_id (str, matching Customer's
 # CharField primary key -- an int converter would reject "ALFKI").
@@ -56,5 +68,6 @@ urlpatterns = [
     customer_list_url,
     product_list_url,
     customer_detail_url,
+    product_detail_url,
     order_detail_url,
 ]

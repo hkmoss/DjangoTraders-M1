@@ -73,3 +73,21 @@ Additional accomplishments:
 
 Result:
 Customer List page now supports searching by Contact Title and displays Contact Title in the customer table. Project is now under Git version control and backed up to GitHub.
+
+9/9/2026
+
+Completed Requirement 4 UI/UX improvements.
+
+Changes made:
+
+- Added a Low Stock badge to Product List when units_in_stock is below 10.
+- Used Bootstrap badge styling and a Font Awesome warning icon.
+- Added an empty search-results alert when no products match search criteria.
+- Reworked the empty-state implementation to avoid a DataTables warning by displaying the alert outside the table.
+- Added a Category column to the Product List results table.
+- Verified Category values display correctly for all products.
+- Verified Supplier and Category searches continue to function correctly.
+- Tested all changes and confirmed no DataTables warnings remain.
+
+Result:
+Product List now provides clearer visual feedback for low stock items, displays a user-friendly message when searches return no records, and includes Category information alongside Supplier information in search results.

@@ -1,0 +1,129 @@
+
+
+{% extends "common/base.html" %}
+
+{% load humanize %}
+
+{% block title %}
+Product Detail
+{% endblock %}
+
+{% block content %}
+<div class="row">
+
+    <div class="col-md-8">
+        <div class="card mb-3 border-0 shadow-sm">
+            <div class="card-header fw-bolder h4">
+                Product Info
+            </div>
+
+            <table class="table mb-0">
+                <tbody>
+                    <tr>
+                        <th scope="row">Product Name</th>
+                        <td>{{ product.product_name }}</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">Unit Price</th>
+                        <td>
+                            {% if product.unit_price is not None %}
+                             ${{ product.unit_price|floatformat:2 }}
+                            {% else %}
+                                —
+                            {% endif %}
+
+ 
+
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">Units In Stock</th>
+                        <td>{{ product.units_in_stock }}</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">Discontinued</th>
+                        <td>{{ product.is_discontinued|yesno:"Yes,No" }}</td>
+                    </tr>
+                </tbody>
+               
+            </table>
+
+        </div>
+    </div>
+
+    <div class="col-md-4">
+    <div class="card mb-3 border-0 shadow-sm">
+        <div class="card-header fw-bolder h4">
+            Supplier & Revenue
+        </div>
+
+        <table class="table mb-0">
+            <tbody>
+                <tr>
+                    <th scope="row">Supplier</th>
+                    <td>{{ product.supplier.company_name }}</td>
+                </tr>
+
+                <tr>
+                    <th scope="row">Contact</th>
+                    <td>{{ product.supplier.contact_name }}</td>
+                </tr>
+
+                <tr>
+                    <th scope="row">Units Sold</th>
+                    <td>{{ product.units_sold }}</td>
+                </tr>
+
+                <tr>
+                    <th scope="row">Total Revenue</th>
+                    <td>${{ product.total_revenue|floatformat:2|intcomma }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+<div class="card border-0 shadow-sm">
+    <div class="card-header fw-bolder h4">
+        Order History
+    </div> 
+ 
+
+
+
+    <table class="table mb-0">
+        <thead>
+            <tr>
+                <th>Order #</th>
+                <th>Customer</th>
+                <th>Quantity</th>
+                <th>Line Total</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for line in order_lines %}
+            <tr>
+                <td><a href="{% url 'djtraders:order_detail' line.order.order_id %}">{{ line.order.order_id }}</a></td>
+                <td>{{ line.order.customer.company_name }}</td>
+                <td>{{ line.quantity }}</td>
+                <td>${{ line.line_total|floatformat:2|intcomma }}</td>
+
+            </tr>
+            
+            
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+
+
+{% endblock %}
+

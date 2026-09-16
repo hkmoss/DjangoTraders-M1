@@ -11,7 +11,7 @@ View functions for the djtraders app.
     the filter here.
   2. customer_detail looks up one Customer, lists their orders
     (customer.order_set), and totals quantity/revenue across them.
-  3. order_detail illustrates model traversal end to end: forward FKs
+  3. order_detail illustrates model traversal end to end: forward FKs    There is not a 
     to Customer/Employee/Shipper, a reverse relation to its line items,
     each reaching its own Product.
   4. product_detail is left as an assignment component -- students build
@@ -159,6 +159,46 @@ def customer_detail(request, customer_id):
         "orders": orders,
     }
     return render(request, "djtraders/customer_detail.html", context)
+
+
+
+def product_detail(request, product_id):
+    """
+    Display a single product, its supplier information, revenue totals,
+    and every order the product has appeared on.
+    """
+    product = get_object_or_404(Product, pk=product_id)
+
+    order_lines = product.orderdetail_set.all()
+
+    context = {
+        "product": product,
+        "order_lines": order_lines,
+    }
+
+    return render(request, "djtraders/product_detail.html", context)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 def order_detail(request, order_id):
     """
