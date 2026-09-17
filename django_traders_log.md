@@ -91,3 +91,55 @@ Changes made:
 
 Result:
 Product List now provides clearer visual feedback for low stock items, displays a user-friendly message when searches return no records, and includes Category information alongside Supplier information in search results.
+
+## 2026-09-16
+
+### Requirement 3 - Product Detail
+
+Completed the Product Detail feature.
+
+#### Views
+- Created `product_detail(request, product_id)` in `views.py`.
+- Used `get_object_or_404(Product, pk=product_id)` to retrieve a single product.
+- Retrieved related order lines using:
+  ```python
+  product.orderdetail_set.all()
+
+  ## 2026-09-17
+
+### Requirement 3 - Product Detail
+
+Completed Product Detail.
+
+Implemented:
+
+- Created `product_detail()` view.
+- Added `product_detail_url`.
+- Added Product Detail template (`product_detail.html`).
+- Added Product Name links from Product List to Product Detail.
+- Added Product Info card:
+  - Product Name
+  - Unit Price
+  - Units In Stock
+  - Discontinued Status
+- Added Supplier & Revenue card:
+  - Supplier Company
+  - Supplier Contact
+  - Units Sold
+  - Total Revenue
+- Added Order History table:
+  - Order Number
+  - Customer Name
+  - Quantity
+  - Line Total
+- Added links from Order History to Order Detail page.
+
+### Django Relationships Practiced
+
+Used:
+
+```python
+product.supplier
+product.orderdetail_set
+line.order
+order.customer

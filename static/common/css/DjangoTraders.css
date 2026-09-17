@@ -141,10 +141,10 @@
    use dt-icon, supplier-facing (Products) pages use dt-icon-supplier,
    same as the dt-btn-*-customer/-supplier pairing below. */
 .dt-icon {
-  color: var(--dt-gold);
+  color: var(--dt-steel);
 }
 .dt-icon-supplier {
-  color: darkorange;
+  color: var(--dt-sage);
 }
 
 .dt-eyebrow {
@@ -523,4 +523,7 @@ table tbody tr:nth-child(even) {
 
 thead.table-dark th {
   background-color: var(--dt-steel) !important;
+}
+thead.dt-products-header th {
+  background-color: var(--dt-sage) !important;
 }
