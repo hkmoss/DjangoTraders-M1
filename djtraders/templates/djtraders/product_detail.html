@@ -11,7 +11,7 @@ Product Detail
 {% block content %}
 <div class="row">
 
-    <div class="col-md-8">
+    <div class="col-md-4">
         <div class="card mb-3 border-0 shadow-sm">
             <div class="card-header fw-bolder h4">
                 Product Info
@@ -53,9 +53,9 @@ Product Detail
             </table>
 
         </div>
-    </div>
+    
 
-    <div class="col-md-4">
+   
     <div class="card mb-3 border-0 shadow-sm">
         <div class="card-header fw-bolder h4">
             Supplier & Revenue
@@ -88,6 +88,9 @@ Product Detail
     </div>
 </div>
 
+
+<div class="col-md-8">
+
 <div class="card border-0 shadow-sm">
     <div class="card-header fw-bolder h4">
         Order History
@@ -96,7 +99,7 @@ Product Detail
 
 
 
-    <table class="table mb-0">
+    <table class="table mb-0" id="product-order-history"> 
         <thead>
             <tr>
                 <th>Order #</th>
@@ -123,7 +126,12 @@ Product Detail
 
 </div>
 
-
-
 {% endblock %}
+
+{% block scripts %}
+<script>
+    $(function() {MakeOrderDetailsDataTable('#product-order-history');});
+</script>
+{% endblock %}
+
 
