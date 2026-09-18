@@ -169,11 +169,26 @@ def product_detail(request, product_id):
     """
     product = get_object_or_404(Product, pk=product_id)
 
+    show_all_supplier_products = request.GET.get("show_all_supplier_products") == "on"
+
     order_lines = product.orderdetail_set.all()
+
+    if show_all_supplier_products:
+        supplier_products = product.supplier.product_set.exclude(
+            product_id=product.product_id
+    )
+    else:
+        supplier_products = product.supplier.product_set.filter(
+            discontinued=0 
+        ).exclude(
+            product_id=product.product_id
+        )
 
     context = {
         "product": product,
         "order_lines": order_lines,
+        "supplier_products": supplier_products,
+        "show_all_supplier_products": show_all_supplier_products,
     }
 
     return render(request, "djtraders/product_detail.html", context)
